@@ -1,12 +1,21 @@
+const { utils } = require("ethers");
+
 async function main() {
-    const MyCryptoNft = await hre.ethers.getContractFactory("MyCryptoNft");
-    const myCryptoNft = await MyCryptoNft.deploy("MyCryptoNft", "MCN");
-  
-    await myCryptoNft.deployed();
-  
-    console.log("MyCryptoNft deployed to:", myCryptoNft.address);
+    const baseTokenURI = "https://gateway.pinata.cloud/ipfs/QmWmvTJmJU3pozR9ZHFmQC2DNDwi2XJtf3QGyYiiagFSWb";
+
+    // Get contract that we want to deploy
+    const contractFactory = await hre.ethers.getContractFactory("NFTCollectible");
+
+    // Deploy contract with the correct constructor arguments
+    const contract = await contractFactory.deploy(baseTokenURI);
+
+    // Wait for this transaction to be mined
+    await contract.deployed();
+
+    // Get contract address
+    console.log("Contract deployed to:", contract.address);
 }
-  
+
 main()
     .then(() => process.exit(0))
     .catch((error) => {
