@@ -25,27 +25,22 @@ describe("NFT Collectible Test", function () {
   });
 
   it("Reserve NFTs", async function () {
-    let txn = await nftContract.reserveNFTs();
-    await txn.wait();
-    console.log("10 NFTs have been reserved");
+    await nftContract.reserveNFTs();
 
     // Get all token IDs of the owner
     const tokensOfOwner = await nftContract.tokensOfOwner(owner.address)
-    console.log("Owner has tokens: ", tokensOfOwner);
     expect(tokensOfOwner.length).to.equal(10);
   });
 
   it("Mint 3 NFTs by sending 0.03 ether", async function () {
-    txn = await nftContract
+    await nftContract
       .connect(user1)
       .mintNFTs(3, { 
         value: utils.parseEther('0.03') 
       });
-    await txn.wait();
 
-    // Get all tokens of user1
+    // Get all token IDs of user1
     const tokensOfUser1 = await nftContract.tokensOfOwner(user1.address)
-    console.log("User1 has tokens: ", tokensOfUser1);
     expect(tokensOfUser1.length).to.equal(3);
   });
 
