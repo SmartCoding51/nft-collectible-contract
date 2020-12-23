@@ -18,8 +18,11 @@ module.exports = {
   networks: {
     ropsten: {
       url: `https://eth-ropsten.alchemyapi.io/v2/${process.env.ALCHEMY_KEY}`,
-      accounts:
-        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      accounts:[process.env.PRIVATE_KEY]
+    },
+    rinkeby: {
+      url: `https://eth-rinkedby.alchemyapi.io/v2/${process.env.ALCHEMY_KEY}`,
+      accounts: [process.env.PRIVATE_KEY]
     }
   },
   etherscan: {

@@ -1,7 +1,8 @@
 const { utils } = require("ethers");
+require('dotenv').config();
 
 async function main() {
-    const baseTokenURI = "https://gateway.pinata.cloud/ipfs/QmWmvTJmJU3pozR9ZHFmQC2DNDwi2XJtf3QGyYiiagFSWb";
+    const baseTokenURI = process.env.BASE_TOKEN_URI;
 
     // Get contract that we want to deploy
     const contractFactory = await hre.ethers.getContractFactory("NFTCollectible");

@@ -1,11 +1,12 @@
 const { expect } = require("chai");
 const { utils } = require("ethers");
+require('dotenv').config();
 
 describe("NFT Collectible Test", function () {
   let nftContract;
   let owner, user1;
   before(async function(){
-    const baseTokenURI = "https://gateway.pinata.cloud/ipfs/QmWmvTJmJU3pozR9ZHFmQC2DNDwi2XJtf3QGyYiiagFSWb";
+    const baseTokenURI = process.env.BASE_TOKEN_URI;
 
     // Get owner/deployer's wallet address
     [owner, user1] = await hre.ethers.getSigners();
